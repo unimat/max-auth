@@ -44,7 +44,17 @@ function AuthForm() {
     // optional: Add validation
 
     if (isLogin) {
-       // log user in
+      const result = await signIn('credentials', {
+        redirect: false,
+        email: enteredEmail,
+        password: enteredPassword,
+      });
+
+      console.log(result)
+
+      if (!result.error) {
+        // set some auth state
+      }
     } else {
       try {
         const result = await createUser(enteredEmail, enteredPassword);

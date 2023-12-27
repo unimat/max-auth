@@ -6,8 +6,10 @@ import { verifyPassword } from '../../../lib/auth';
 import { connectToDatabase } from '../../../lib/db';
 
 export default NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
-    jwt: true,
+    // jwt: true,
+    strategy: "jwt"
   },
   providers: [
     // Providers.Credentials({
