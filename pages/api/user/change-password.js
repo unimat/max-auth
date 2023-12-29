@@ -1,5 +1,3 @@
-import { getSession } from 'next-auth/react';
-
 import { hashPassword, verifyPassword } from '../../../lib/auth';
 import { connectToDatabase } from '../../../lib/db';
 
@@ -8,14 +6,7 @@ async function handler(req, res) {
     return;
   }
 
-  const session = await getSession({ req: req });
-
-  if (!session) {
-    res.status(401).json({ message: 'Not authenticated!' });
-    return;
-  }
-
-  const userEmail = session.user.email;
+  const userEmail = req.body.email;
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
 
